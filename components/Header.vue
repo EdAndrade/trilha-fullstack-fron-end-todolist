@@ -6,8 +6,7 @@
 
 		<nav>
 			<ul>
-				<li>Add Todo</li>
-				<li>Edit Todo</li>
+				<li>Login</li>
 			</ul>
 		</nav>
 	</section>
@@ -19,10 +18,11 @@
 <style scoped lang="scss">
 	#main-header{
 		width: 100%;
-		height: 50px;
 		background-color: #222;
 		color: #fff;
+		padding: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 	}
-
-
 </style>

@@ -1,8 +1,16 @@
 <template>
 	<div>
 		<Header/>
-		<h1>Hello {{ color }}</h1>
-		<button @click="changeColorName()" >Change color</button>
+
+		<section>
+			<h1>Todo List</h1>
+			<p>Simple description of todo list</p>
+
+			<div v-for="(i, index) in [1,3,4,5]" :key="index">
+				<Todo />
+				<h1>{{index}}</h1>
+			</div>
+		</section>
 	</div>
 </template>
 
@@ -26,4 +34,5 @@
 </script>
 
 <style scoped>
+
 </style>
