@@ -1,6 +1,8 @@
 <template>
-	<div class="todoComponent" @mouseenter="setShowToTrue" @mouseleave="setShowToFalse">
-		<p class="title">Comer arroz com feijao</p>
+	<div class="todoComponent"
+		@mouseenter="setTittle('Comer Leitao com pao')"
+		@mouseleave="setTittle('Comer arroz com feijao')">
+		<p class="title">{{title}}</p>
 		<p class="description">Esse todo e para comer arroz com feijao</p>
 		<p class="user">Jose Nicola</p>
 
@@ -17,19 +19,16 @@
 		data(){
 
 			return {
-				show: false
+				show: false,
+				title: 'Comer arroz com feijao'
 			}
 		},
 
 		methods: {
 
-			setShowToFalse(){
-				this.show = false
+			setTittle(title){
+				this.title = title
 			},
-
-			setShowToTrue(){
-				this.show = true
-			}
 		}
 	}
 </script>

@@ -1,15 +1,19 @@
 <template>
 	<div class="homePage">
 		<Header/>
-
+		<AddTodo v-show="showTodo"/>
 		<section class="todolist">
-			<h1>Todo List</h1>
+
 			<p>Simple description of todo list</p>
 
 			<div class="todoContainer" v-for="(i, index) in [1,3,4,5]" :key="index">
 				<Todo />
 			</div>
 		</section>
+
+		<button class="addTodo" @click="handleTodo">
+			<i class="fa-regular fa-plus"></i>
+		</button>
 	</div>
 </template>
 
@@ -19,14 +23,14 @@
 
 		data(){
 			return {
-				color: 'red'
+				showTodo: false
 			}
 		},
 
 		methods: {
 
-			changeColorName(){
-				this.color = 'blue'
+			handleTodo(){
+				this.showTodo = !this.showTodo
 			}
 		}
 	};
@@ -35,7 +39,8 @@
 <style scoped lang="scss">
 
 	.homePage{
-
+		position: relative;
+		min-height: 100vh;
 
 		.todolist{
 			margin: 20px auto;
@@ -43,6 +48,26 @@
 
 			.todoContainer{
 				margin-top: 10px;
+			}
+		}
+
+		.addTodo{
+			position: fixed;
+			width: 50px;
+			height: 50px;
+			border-radius: 100%;
+			border-style: none;
+			background-color: red;
+			bottom: 30px;
+			right: 30px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+
+			i{
+				color: #fff;
+				font-size: 1.4em;
 			}
 		}
 	}
