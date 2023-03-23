@@ -1,13 +1,13 @@
 <template>
 	<div class="homePage">
 		<Header/>
-		<AddTodo v-show="showTodo"/>
+		<AddTodo v-show="showTodo" v-on:closeModal="handleTodo" v-on:addTodoToList="increaseTodoList" />
 		<section class="todolist">
 
 			<p>Simple description of todo list</p>
 
-			<div class="todoContainer" v-for="(i, index) in [1,3,4,5]" :key="index">
-				<Todo />
+			<div class="todoContainer" v-for="(i, index) in todolist" :key="index">
+				<Todo/>
 			</div>
 		</section>
 
@@ -23,7 +23,9 @@
 
 		data(){
 			return {
-				showTodo: false
+				showTodo: false,
+
+				todolist: []
 			}
 		},
 
@@ -31,6 +33,10 @@
 
 			handleTodo(){
 				this.showTodo = !this.showTodo
+			},
+
+			increaseTodoList(todo){
+				this.todolist.push(todo)
 			}
 		}
 	};
