@@ -6,9 +6,10 @@
 
 			<p>Simple description of todo list</p>
 
-			<div class="todoContainer" v-for="(i, index) in todolist" :key="index">
-				<Todo/>
+			<div class="todoContainer" v-for="(todo, index) in todolist" :key="index">
+				<Todo :title="todo.title" :description="todo.description" :user="todo.user" />
 			</div>
+
 		</section>
 
 		<button class="addTodo" @click="handleTodo">
@@ -36,7 +37,7 @@
 			},
 
 			increaseTodoList(todo){
-				this.todolist.push(todo)
+				this.todolist.push({ ...todo })
 			}
 		}
 	};

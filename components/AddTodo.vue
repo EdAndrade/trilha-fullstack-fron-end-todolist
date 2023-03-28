@@ -32,6 +32,14 @@
 
 			addTodoToList(){
 				this.$emit('addTodoToList', this.todo)
+				// this.todo.title = ''
+				// this.todo.description = ''
+				// this.todo.user = ''
+
+
+				Object.keys(this.todo).forEach( key => {
+					this.todo[key] = ''
+				})
 			}
 		}
 	}

@@ -1,13 +1,10 @@
 <template>
-	<div class="todoComponent"
-		@mouseenter="setTittle('Comer Leitao com pao')"
-		@mouseleave="setTittle('Comer arroz com feijao')">
-		<p class="title">{{title}}</p>
-		<p class="description">Esse todo e para comer arroz com feijao</p>
-		<p class="user">Jose Nicola</p>
+	<div class="todoComponent">
+		<p class="title">{{ title }}</p>
+		<p class="description">{{ description }}</p>
 
-		<div class="teste" v-show="show">
-			NICOLA JOSE
+		<div class="teste">
+			{{ user }}
 		</div>
 	</div>
 </template>
@@ -16,11 +13,31 @@
 
 	export default {
 
+		props: {
+
+			title: {
+				type: String,
+				required: false,
+				default: () => ''
+			},
+
+			user: {
+				type: String,
+				required: false,
+				default: () => ''
+			},
+
+			description: {
+				type: String,
+				required: false,
+				default: () => ''
+			}
+		},
+
 		data(){
 
 			return {
 				show: false,
-				title: 'Comer arroz com feijao'
 			}
 		},
 
