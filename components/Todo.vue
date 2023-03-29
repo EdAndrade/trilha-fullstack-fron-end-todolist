@@ -6,6 +6,10 @@
 		<div class="teste">
 			{{ user }}
 		</div>
+
+		<div class="openCloseMenu">
+			<i class="fa-solid fa-ellipsis"></i>
+		</div>
 	</div>
 </template>
 
@@ -70,6 +74,11 @@
 			font-size: 0.8em;
 			color: #555;
 			margin-top: 5px;
+		}
+
+		.openCloseMenu{
+			margin-top: 10px;
+			font-size: 1.7em;
 		}
 	}
 </style>

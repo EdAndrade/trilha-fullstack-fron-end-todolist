@@ -1,7 +1,7 @@
 <template>
 	<div class="homePage">
 		<Header/>
-		<AddTodo v-show="showTodo" v-on:closeModal="handleTodo" v-on:addTodoToList="increaseTodoList" />
+		<AddTodo v-show="showTodo"v-on:closeModal="handleTodo" v-on:addTodoToList="increaseTodoList" />
 		<section class="todolist">
 
 			<p>Simple description of todo list</p>

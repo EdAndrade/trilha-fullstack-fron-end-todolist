@@ -31,15 +31,21 @@
 		methods: {
 
 			addTodoToList(){
-				this.$emit('addTodoToList', this.todo)
-				// this.todo.title = ''
-				// this.todo.description = ''
-				// this.todo.user = ''
 
+				const isNotEmpty = Object.values(this.todo).reduce( (acc, value) => {
+					return value.length > 1 && acc
+				},true)
 
-				Object.keys(this.todo).forEach( key => {
-					this.todo[key] = ''
-				})
+				if(isNotEmpty){
+					this.$emit('addTodoToList', this.todo)
+					Object.keys(this.todo).forEach( key => {
+						this.todo[key] = ''
+					})
+					this.$emit('closeModal')
+				}else{
+					alert('Preencha todos os campos')
+				}
+
 			}
 		}
 	}
