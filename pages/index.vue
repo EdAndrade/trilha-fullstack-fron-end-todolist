@@ -1,13 +1,25 @@
 <template>
 	<div class="homePage">
 		<Header/>
-		<AddTodo v-on:closeModal="handleTodo" v-on:addTodoToList="increaseTodoList" />
+		<AddTodo v-show="showTodo" v-on:closeModal="handleTodo" v-on:addTodoToList="increaseTodoList" />
+
+
+		<EditTodo
+			v-if="showEditTodo"
+			:todoToEdit="todoToEdit" v-on:closeEditModal="showEditTodo=false"
+			v-on:editTodoInList="editTodo"
+		/>
 		<section class="todolist">
 
 			<p>Simple description of todo list</p>
 
 			<div class="todoContainer" v-for="(todo, index) in todolist" :key="index">
-				<Todo :title="todo.title" :description="todo.description" :user="todo.user" />
+				<Todo
+					:todo="todo"
+					v-on:openClose="openCloseTodoMenu"
+					v-on:deleteTodo="deleteTodo"
+					v-on:editTodo="openEditTodo"
+				/>
 			</div>
 
 		</section>
@@ -25,8 +37,10 @@
 		data(){
 			return {
 				showTodo: false,
-
-				todolist: []
+				showEditTodo: false,
+				id: 1,
+				todolist: [],
+				todoToEdit: {}
 			}
 		},
 
@@ -37,7 +51,40 @@
 			},
 
 			increaseTodoList(todo){
-				this.todolist.push({ ...todo })
+				this.todolist.push({
+					openCloseMenu: false,
+					id: this.id,
+					...todo
+				})
+				this.id++
+			},
+
+			openCloseTodoMenu(id){
+				this.todolist.forEach( todo => {
+					if(todo.id === id){
+						todo.openCloseMenu = !todo.openCloseMenu
+					}
+				})
+			},
+
+			deleteTodo(id){
+				this.todolist = this.todolist.filter( todo => todo.id !== id);
+			},
+
+			openEditTodo(todo){
+				this.todoToEdit = todo
+				this.showEditTodo = true
+			},
+
+			editTodo(todoEdit){
+				this.todolist = this.todolist.map( todo => {
+
+					if(todo.id === todoEdit.id){
+						return todoEdit
+					}else{
+						return todo
+					}
+				})
 			}
 		}
 	};
