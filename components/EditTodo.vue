@@ -3,7 +3,7 @@
 
 		<form @submit.prevent="editTodoInList()" class="todoContainer">
 			<input v-model="todo.title" type="text" placeholder="O que fazer"/>
-
+			
 			<input v-model="todo.description" type="text" placeholder="Descrição"/>
 
 			<input v-model="todo.user" type="text" placeholder="Usuário"/>
@@ -40,7 +40,6 @@
 
 			editTodoInList(){
 
-				console.log(this.todo)
 				const isNotEmpty = Object.values(this.todo).reduce( (acc, value) => {
 					if(typeof(value) === 'string'){
 						return value.length > 1 && acc
@@ -48,8 +47,6 @@
 						return acc
 					}
 				},true)
-
-				console.log(isNotEmpty, this.todo)
 
 				if(isNotEmpty){
 					this.$emit('editTodoInList', this.todo)

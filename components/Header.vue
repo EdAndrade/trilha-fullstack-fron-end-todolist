@@ -5,9 +5,24 @@
 		</div>
 
 		<nav>
-			<ul>
-				<li>Login</li>
+			<ul class="login-logout">
+				<li>
+					<button>Login</button>
+				</li>
+				<li>
+					<button>Logout</button>
+				</li>
 			</ul>
+
+			<section>
+				<div class="user">
+					<div class="userImage">
+						image
+					</div>
+
+					<p>name</p>
+				</div>
+			</section>
 		</nav>
 	</section>
 </template>
@@ -24,5 +39,24 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+
+		nav{
+			.login-logout{
+				display: flex;
+				gap: 5px;
+
+				li{
+					list-style: none;
+
+					button{
+						padding: 5px 10px;
+						border-radius: 8px;
+						background-color: red;
+						color: #fff;
+						border-style: none;
+					}
+				}
+			}
+		}
 	}
 </style>

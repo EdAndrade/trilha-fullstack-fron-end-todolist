@@ -6,19 +6,22 @@
 
 		<EditTodo
 			v-if="showEditTodo"
-			:todoToEdit="todoToEdit" v-on:closeEditModal="showEditTodo=false"
+			:todoToEdit="todoToEdit"
+			v-on:closeEditModal="showEditTodo=false"
 			v-on:editTodoInList="editTodo"
 		/>
 		<section class="todolist">
 
-			<p>Simple description of todo list</p>
+			<h1 class="indexTodoListTitle">Simple description of todo list</h1>
 
-			<div class="todoContainer" v-for="(todo, index) in todolist" :key="index">
+			<div class="todoContainer" >
 				<Todo
+					v-for="(todo, index) in todolist" :key="index"
 					:todo="todo"
 					v-on:openClose="openCloseTodoMenu"
 					v-on:deleteTodo="deleteTodo"
 					v-on:editTodo="openEditTodo"
+					v-on:changeStatus="changeTodoStatus"
 				/>
 			</div>
 
@@ -33,6 +36,7 @@
 <script>
 	export default {
 		name: "HomePage",
+		middleware: 'isAuthenticated',
 
 		data(){
 			return {
@@ -53,6 +57,7 @@
 			increaseTodoList(todo){
 				this.todolist.push({
 					openCloseMenu: false,
+					status: false,
 					id: this.id,
 					...todo
 				})
@@ -61,9 +66,7 @@
 
 			openCloseTodoMenu(id){
 				this.todolist.forEach( todo => {
-					if(todo.id === id){
-						todo.openCloseMenu = !todo.openCloseMenu
-					}
+					todo.openCloseMenu = todo.id === id ? !todo.openCloseMenu : false
 				})
 			},
 
@@ -85,6 +88,14 @@
 						return todo
 					}
 				})
+			},
+
+			changeTodoStatus(id){
+				this.todolist.forEach( todo => {
+					if(todo.id === id){
+						todo.status = !todo.status
+					}
+				})
 			}
 		}
 	};
@@ -98,10 +109,14 @@
 
 		.todolist{
 			margin: 20px auto;
-			text-align: center;
+			padding: 10px 20px;
 
 			.todoContainer{
-				margin-top: 10px;
+				margin-top: 30px;
+				display: flex;
+				flex-flow: row;
+				gap: 15px;
+				flex-wrap: wrap;
 			}
 		}
 
